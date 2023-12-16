@@ -14,7 +14,7 @@ const UIContainer = (props) => {
         barStyle="light-content"
       />
 
-      <View style={[...styles.innerParent, ...props.innerContainerStyle]}>
+      <View style={{ ...styles.innerParent, ...props.innerContainerStyle }}>
         {props.children}
       </View>
     </SafeAreaView>
@@ -24,15 +24,16 @@ const UIContainer = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.backgroundColor,
+    backgroundColor: COLORS.pageBackground,
   },
   innerParent: {
     flex: 1,
     paddingHorizontal: DIMENSION.PADDING,
-    paddingVertical: DIMENSION.MARGIN * 2,
   },
 });
 
-UIContainer.PropTypes = {};
+UIContainer.PropTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default UIContainer;

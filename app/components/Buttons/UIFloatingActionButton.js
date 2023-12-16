@@ -11,7 +11,7 @@ const SIZE = 50;
 const UIFAB = (props) => {
   return (
     <TouchableOpacity onPress={() => props.onPress()} style={styles.container}>
-      {props.icon}
+      <Ionicons name="add" color={COLORS.white} size={20} />
     </TouchableOpacity>
   );
 };
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
 
 UIFAB.PropTypes = {
   onPress: PropTypes.func.isRequired,
-  icon: PropTypes.element,
 };
 
 export default UIFAB;

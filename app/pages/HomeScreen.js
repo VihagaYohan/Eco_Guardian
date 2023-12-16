@@ -1,14 +1,25 @@
-import React, { Component } from "react";
+import React, { Component, useLayoutEffect } from "react";
 import { StyleSheet, SafeAreaView, View, Text, Dimensions } from "react-native";
 
 // components
-import { UITextView } from "../components";
+import { UITextView, UIContainer, UIFAB } from "../components";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation, route }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "Home",
+      headerLeft: (props) => <></>,
+    });
+  }, []);
+
   return (
-    <View>
-      <UITextView text="Home screen page" textStyle={{ color: "red" }} />
-    </View>
+    <UIContainer>
+      <View style={{ flex: 1 }}>
+        <UITextView text="Home screen page" textStyle={{ color: "red" }} />
+
+        <UIFAB onPress={() => console.log("onpress")} />
+      </View>
+    </UIContainer>
   );
 };
 

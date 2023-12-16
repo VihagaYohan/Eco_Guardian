@@ -14,6 +14,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS } from "../constants";
 
 const UIHeaderBack = (props) => {
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       onPress={() => navigation.goBack()}
