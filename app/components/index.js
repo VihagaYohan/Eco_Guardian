@@ -6,3 +6,5 @@ export { default as UIContainer } from "./UIContainer";
 // buttons
 export { default as UIButton } from "./Buttons/UIButton";
 export { default as UIFAB } from "./Buttons/UIFloatingActionButton";
+export { default as UIHeader } from "./UIHeader";
+export { default as UIHeaderBack } from "./UIHeaderBack";
