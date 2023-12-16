@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // navigation
-import { Routes } from "./index";
+import { Routes, BottomNavigator } from "./index";
 
 // screens
 import { HomeScreen } from "../pages";
@@ -26,12 +26,12 @@ const Navigator = () => {
           fontWeight: "normal",
         },
         headerTitleAlign: "center",
-        headerShown: true,
+        headerShown: false,
         headerBackTitleVisible: false,
         headerLeft: (props) => <UIHeaderBack />,
       }}
     >
-      <Stack.Screen name={Routes.home} component={HomeScreen} />
+      <Stack.Screen name={Routes.bottom} component={BottomNavigator} />
     </Stack.Navigator>
   );
 };

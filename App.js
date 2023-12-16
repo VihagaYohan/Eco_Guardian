@@ -7,9 +7,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 // navigator
 import { AppNavigator } from "./app/navigation";
 
-// screens
-import { HomeScreen } from "./app/pages";
-
 export default function App() {
   return (
     <SafeAreaProvider>
