@@ -1,8 +1,18 @@
-import React, { Component, useLayoutEffect } from "react";
-import { StyleSheet, SafeAreaView, View, Text, Dimensions } from "react-native";
+import React, { Component, useLayoutEffect, useEffect } from "react";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 
 // components
 import { UITextView, UIContainer, UIFAB } from "../components";
+
+// data
+import complains from "../data/complain";
 
 const HomeScreen = ({ navigation, route }) => {
   useLayoutEffect(() => {
@@ -12,10 +22,19 @@ const HomeScreen = ({ navigation, route }) => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(complains);
+  }, []);
+
+  // render UI
+  const ComplainItem = (complain) => {
+    return <TouchableOpacity></TouchableOpacity>;
+  };
+
   return (
     <UIContainer>
       <View style={{ flex: 1 }}>
-        <UITextView text="Home screen page" textStyle={{ color: "red" }} />
+        <UITextView text="Hello, " textStyle={{ color: "red" }} />
 
         <UIFAB onPress={() => console.log("onpress")} />
       </View>
