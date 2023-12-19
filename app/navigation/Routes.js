@@ -1,5 +1,7 @@
 export default {
   bottom: "BOTTOM_NAVIGATOR",
+  login: "LOGIN_SCREEN",
+  register: "REGISTER_SCREEN",
   home: "HOME_SCREEN",
   logs: "LOGS_SCREEN",
   profile: "PROFILE_SCREEN",
