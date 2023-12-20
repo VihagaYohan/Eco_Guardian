@@ -15,3 +15,17 @@ export const getAllCompalaintsByUser = async (userId) => {
     console.log(`Error at fetch complaints by user ${e.message}`);
   }
 };
+
+// add new complaint
+export const addComplaint = async(payload) => {
+  try {
+    const complaintList = await axios.get(complaints)
+    console.log(complaintList.data.length)
+
+    const complainPayload = {
+      complain_id: complaintList[complaintList.length-1]
+    }
+  }catch(e) {
+    console.log(`Error at creating complaint ${e.message}`)
+  }
+}

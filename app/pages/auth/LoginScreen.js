@@ -20,7 +20,8 @@ import {
   UIFAB,
   UIButton,
   UITextInput,
-  UIAlert
+  UIAlert,
+  UILoader
 } from "../../components";
 
 // widgets
@@ -36,6 +37,7 @@ import { Routes } from "../../navigation";
 const LoginScreen = ({ navigation, route }) => {
   const [userName, setUserName] = useState('John');
   const [password, setPassword] = useState('asdf');
+  const [loading, setLoading] = useState(false)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -47,11 +49,15 @@ const LoginScreen = ({ navigation, route }) => {
   // handle login
   const handleLoging = async () => {
     try  {
+      setLoading(true)
         if(userName.length === 0 && password.length === 0 ) {
            Alert.alert('Please check username and password fields')
         } else {
-          await userLogin({userName, password})
-          navigation.navigate(Routes.bottom)
+          let result = await userLogin({userName, password})
+          if(result) {
+            setLoading(false)
+            navigation.navigate(Routes.bottom)
+          }
         }
     }catch(e) {
       Alert.alert('Login failed. Please check login credentials')
@@ -76,7 +82,7 @@ const LoginScreen = ({ navigation, route }) => {
           resizeMode="contain"
         />
 
-        <View style={{ marginVertical: DIMENSION.MARGIN * 4 }}>
+        {loading === false ?<View style={{ marginVertical: DIMENSION.MARGIN * 4 }}>
           <UITextInput
             placeholder="Enter user name"
             value={userName}
@@ -93,7 +99,9 @@ const LoginScreen = ({ navigation, route }) => {
           <UIButton
           label="Login"
           onPress={() => handleLoging()}/>
-        </View>
+        </View> : (
+          <UILoader/>
+        )}
       </ScrollView>
     </UIContainer>
   );

@@ -7,4 +7,5 @@ export default {
   profile: "PROFILE_SCREEN",
   newLog: "NEW_LOG_SCREEN",
   logDetail: "LOG_DETAIL_SCREEN",
+  newComplaint:'NEW_COMPLAINT_SCREEN'
 };

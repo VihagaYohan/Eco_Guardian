@@ -11,7 +11,15 @@ import { UITextView } from "../index";
 const UIButton = (props) => {
   return (
     <TouchableOpacity
-      style={[styles.buttonStyle, props.buttonStyle]}
+      style={[
+        styles.buttonStyle,
+        props.buttonStyle,
+        {
+          backgroundColor: props.isPrimary
+            ? COLORS.primaryColor
+            : "rgba(102,187,106, 0.8)",
+        },
+      ]}
       onPress={() => props.onPress()}
       {...props}
     >
@@ -25,7 +33,7 @@ const UIButton = (props) => {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    width: DIMENSION.SCREEN_WIDTH - (DIMENSION.MARGIN * 2),
+    width: DIMENSION.SCREEN_WIDTH - DIMENSION.MARGIN * 2,
     borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",

@@ -17,11 +17,12 @@ export const userLogin = async (payload) => {
   try {
     let user = null;
     let users = await allUsers();
+    console.log(users)
     if (users?.data.length > 0) {
       users?.data.map(async (item) => {
         if (item.user_name === payload.userName) {
-          console.log(`${item.user_name} - ${payload.userName}`);
           if (item.password === payload.password) {
+            console.log(payload)
             // store user type
             await storeData(KEYS.userType, item.dep_id);
 
@@ -33,6 +34,9 @@ export const userLogin = async (payload) => {
           throw "User not found";
         }
       });
+      return true
+    } else {
+      console.log('empty')
     }
   } catch (e) {
     console.log(`Error at user login ${e.message}`);

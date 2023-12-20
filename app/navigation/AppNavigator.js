@@ -4,7 +4,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes, BottomNavigator } from "./index";
 
 // screens
-import { HomeScreen, LoginScreen, RegisterScreen } from "../pages";
+import {
+  HomeScreen,
+  LoginScreen,
+  RegisterScreen,
+  NewComplaintScreen,
+} from "../pages";
 
 // constants
 import { COLORS } from "../constants";
@@ -34,6 +39,7 @@ const Navigator = () => {
       <Stack.Screen name={Routes.login} component={LoginScreen} />
       <Stack.Screen name={Routes.register} component={RegisterScreen} />
       <Stack.Screen name={Routes.bottom} component={BottomNavigator} />
+      <Stack.Screen name={Routes.newComplaint} component={NewComplaintScreen} />
     </Stack.Navigator>
   );
 };
