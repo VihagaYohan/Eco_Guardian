@@ -21,7 +21,14 @@ const NewComplaintScreen = ({ navigation, route }) => {
 
   const handleSaveComplain = async () => {
     try {
-      addComplaint();
+      if(complainName.length === 0 && description.length === 0) {
+        Alert.alert('Please check the fields')
+      } else {
+        addComplaint({
+          complain_name: complainName, 
+          complain_descrip: description
+        })
+      }
     } catch (e) {
       console.log(e);
     }
@@ -44,7 +51,7 @@ const NewComplaintScreen = ({ navigation, route }) => {
 
         <UIButton
           label="Add Attachments"
-          onPress={() => handleSaveComplain()}
+          onPress={() => console.log()}
           isPrimary={false}
           buttonStyle={{ marginBottom: DIMENSION.MARGIN }}
         />

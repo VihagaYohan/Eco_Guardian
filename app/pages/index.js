@@ -8,3 +8,4 @@ export { default as ProfileScreen } from "./ProfileScreen";
 
 // complaint
 export {default as NewComplaintScreen} from './NewComplaint'
+export {default as DetailsScreen} from './DetailsScreen'

@@ -9,7 +9,9 @@ export const getAllCompalaintsByUser = async (userId) => {
     let complaints = await axios.get(
       `http://192.168.1.4:8080/api/v1/complain/getAllComplains`
     );
-    let complainList = complaints?.data.filter(item => item.complain_id === userId)
+    let complainList = complaints?.data.filter(
+      (item) => item.complain_id === userId
+    );
     return complainList;
   } catch (e) {
     console.log(`Error at fetch complaints by user ${e.message}`);
@@ -17,15 +19,18 @@ export const getAllCompalaintsByUser = async (userId) => {
 };
 
 // add new complaint
-export const addComplaint = async(payload) => {
+export const addComplaint = async (payload) => {
   try {
-    const complaintList = await axios.get(complaints)
-    console.log(complaintList.data.length)
+    axios.get(
+      `http://192.168.1.4:8080/api/v1/complain/getAllComplains`
+    ).then(response => {
+      console.log(response.data)
+    })
 
-    const complainPayload = {
-      complain_id: complaintList[complaintList.length-1]
-    }
-  }catch(e) {
-    console.log(`Error at creating complaint ${e.message}`)
+    /* const complainPayload = {
+      complain_id: complaintList[complaintList.length - 1],
+    }; */
+  } catch (e) {
+    console.log(`Error at creating complaint ${e.message}`);
   }
-}
+};
