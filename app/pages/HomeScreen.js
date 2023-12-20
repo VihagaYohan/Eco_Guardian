@@ -22,6 +22,7 @@ import { getData } from "../utils/helpers";
 // services
 import { getAllCompalaintsByUser } from "../services/ComplaintService";
 import moment from "moment";
+import { Routes } from "../navigation";
 
 const HomeScreen = ({ navigation, route }) => {
   const [user, setUser] = useState();
@@ -36,11 +37,16 @@ const HomeScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     getCurrentUser();
+    fetchComplaints();
   }, []);
 
   useEffect(() => {
     fetchComplaints();
   }, [user]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [complains]);
 
   // fetch current user from storage
   const getCurrentUser = async () => {
@@ -64,56 +70,63 @@ const HomeScreen = ({ navigation, route }) => {
   };
 
   // render UI
-  const ComplainItem = (complain) => {
-    return <TouchableOpacity></TouchableOpacity>;
-  };
-
   return (
     <UIContainer>
       <View style={{ flex: 1, paddingVertical: DIMENSION.PADDING }}>
         <UITextView text={`Hello`} textStyle={styles.title} />
 
-        <FlatList
-          data={complains}
-          showsVerticalScrollIndicator={false}
-          style={{ marginVertical: DIMENSION.MARGIN }}
-          renderItem={({ item, index }) => {
-            return (
-              <TouchableOpacity
-                style={styles.cardStyle}
-                onPress={() => console.log(item)}
-              >
-                <View
-                  style={{ ...STYLES.flexRow, justifyContent: "space-between" }}
+
+        {complains.length === 0 ? (
+          <View style={{justifyContent:'center', alignItems:'center'}}>
+            <UITextView
+            text={`There are no complaints show`}/>
+          </View>
+        ) : (
+          <FlatList
+            data={complains}
+            showsVerticalScrollIndicator={false}
+            style={{ marginVertical: DIMENSION.MARGIN }}
+            renderItem={({ item, index }) => {
+              return (
+                <TouchableOpacity
+                  style={styles.cardStyle}
+                  onPress={() => console.log(item)}
                 >
-                  <UITextView
-                    text={item?.compalin_name}
-                    textStyle={styles.cardTitle}
-                  />
+                  <View
+                    style={{
+                      ...STYLES.flexRow,
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <UITextView
+                      text={item?.compalin_name}
+                      textStyle={styles.cardTitle}
+                    />
 
+                    <UITextView
+                      text={
+                        item?.priority_id === 1
+                          ? "LOW"
+                          : item?.priority_id === 2
+                          ? "MEDIUM"
+                          : item?.priority_id === 3
+                          ? "HIGH"
+                          : "CRITICAL"
+                      }
+                      textStyle={styles.priorityId}
+                    />
+                  </View>
                   <UITextView
-                    text={
-                      item?.priority_id === 1
-                        ? "LOW"
-                        : item?.priority_id === 2
-                        ? "MEDIUM"
-                        : item?.priority_id === 3
-                        ? "HIGH"
-                        : "CRITICAL"
-                    }
-                    textStyle={styles.priorityId}
+                    text={moment(item?.created_date).format("DD/MMM/YYYY")}
+                    textStyle={styles.date}
                   />
-                </View>
-                <UITextView
-                  text={moment(item?.created_date).format('DD/MMM/YYYY')}
-                  textStyle={styles.date}
-                />
-              </TouchableOpacity>
-            );
-          }}
-        />
+                </TouchableOpacity>
+              );
+            }}
+          />
+        )}
 
-        <UIFAB onPress={() => console.log("onpress")} />
+        <UIFAB onPress={() => navigation.navigate(Routes.newComplaint)} />
       </View>
     </UIContainer>
   );
@@ -142,9 +155,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   date: {
-    alignSelf:'flex-end',
-    marginVertical: DIMENSION.MARGIN
-  }
+    alignSelf: "flex-end",
+    marginVertical: DIMENSION.MARGIN,
+  },
 });
 
 export default HomeScreen;
