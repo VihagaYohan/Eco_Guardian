@@ -34,7 +34,7 @@ import {userLogin} from '../../services/AuthServices'
 import { Routes } from "../../navigation";
 
 const LoginScreen = ({ navigation, route }) => {
-  const [userName, setUserName] = useState('David1');
+  const [userName, setUserName] = useState('John');
   const [password, setPassword] = useState('asdf');
 
   useLayoutEffect(() => {
