@@ -30,8 +30,7 @@
         {
           "calendarPermission": "EcoGuardian needs to access your calendar."
         }
-      ],
-      "@react-native-google-signin/google-signin"
+      ]
     ]
   }
 }
