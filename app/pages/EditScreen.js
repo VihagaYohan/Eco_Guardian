@@ -1,15 +1,16 @@
 import React, { Component, useLayoutEffect, useState } from "react";
 import { StyleSheet, View, Alert } from "react-native";
+import moment from "moment";
 import DropDownPicker from "react-native-dropdown-picker";
 
 // components
 import { UITextView, UIContainer, UIButton, UITextInput } from "../components";
-import { DIMENSION } from "../constants";
+import { COLORS, DIMENSION, STYLES } from "../constants";
 
 // service
 import { addComplaint } from "../services/ComplaintService";
 
-const NewComplaintScreen = ({ navigation, route }) => {
+const EditScreen = ({ navigation, route }) => {
   const [complainName, setComplainName] = useState();
   const [description, setDescription] = useState();
   const [open, setOpen] = useState(false);
@@ -18,43 +19,34 @@ const NewComplaintScreen = ({ navigation, route }) => {
     { label: "Department of Wild Life", value: "d1" },
     { label: "Ministry of Environment", value: "d2" },
   ]);
-
+  const [statusItems, setStatusItems] = useState([
+    { label: "LOW", value: "d1" },
+    { label: "MIDIEM", value: "d2" },
+    { label: "HIGH", value: "d2" },
+    { label: "CRITICAL", value: "d2" },
+  ]);
+  
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: "Add New Complaint",
+      headerTitle: "Update Complaint",
       headerLeft: (props) => <></>,
       headerShown: true,
     });
   }, []);
-
-  const handleSaveComplain = async () => {
-    try {
-      if (complainName.length === 0 && description.length === 0) {
-        Alert.alert("Please check the fields");
-      } else {
-        addComplaint({
-          complain_name: complainName,
-          complain_descrip: description,
-        });
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   return (
     <UIContainer>
       <View style={{ flex: 1, paddingVertical: DIMENSION.PADDING }}>
         <UITextInput
           placeholder="Enter complain title"
-          value={complainName}
+          value="Sample complaint title"
           onChangeText={(text) => setComplainName(text)}
         />
 
         <UITextInput
-          placeholder="Enter complain description"
-          value={description}
-          onChangeText={(text) => setDescription(text)}
+          placeholder="Enter complain title"
+          value="Sample complaint description"
+          onChangeText={(text) => setComplainName(text)}
         />
 
         <DropDownPicker
@@ -66,14 +58,21 @@ const NewComplaintScreen = ({ navigation, route }) => {
           setItems={setItems}
         />
 
-        <UIButton
-          label="Add Attachments"
-          onPress={() => console.log()}
-          isPrimary={false}
-          buttonStyle={{ marginVertical: DIMENSION.MARGIN }}
+        <View style={{height: 10}}></View>
+
+        <DropDownPicker
+          open={open}
+          value={value}
+          items={statusItems}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setStatusItems}
         />
 
-        <UIButton label="Add Complain" onPress={() => handleSaveComplain()} />
+        <UIButton
+        label="Update"
+        onPress={() => console.log('')}
+        buttonStyle={{marginVertical: 10}}/>
       </View>
     </UIContainer>
   );
@@ -81,4 +80,4 @@ const NewComplaintScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({});
 
-export default NewComplaintScreen;
+export default EditScreen;

@@ -8,5 +8,6 @@ export default {
   newLog: "NEW_LOG_SCREEN",
   logDetail: "LOG_DETAIL_SCREEN",
   newComplaint:'NEW_COMPLAINT_SCREEN',
-  detailsScreen: 'DETAILS_SCREEN'
+  detailsScreen: 'DETAILS_SCREEN',
+  editDetailsScreen:"EDIT_DETAILS_SCREEN"
 };

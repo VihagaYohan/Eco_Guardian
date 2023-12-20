@@ -10,6 +10,7 @@ import {
   RegisterScreen,
   NewComplaintScreen,
   DetailsScreen,
+  EditScreen
 } from "../pages";
 
 // constants
@@ -23,7 +24,7 @@ const Stack = createNativeStackNavigator();
 const Navigator = () => {
   return (
     <Stack.Navigator 
-    initialRouteName={Routes.detailsScreen}
+    initialRouteName={Routes.newComplaint}
       screenOptions={{
         headerStyle: {
           backgroundColor: COLORS.green.green400,
@@ -43,6 +44,7 @@ const Navigator = () => {
       <Stack.Screen name={Routes.bottom} component={BottomNavigator} />
       <Stack.Screen name={Routes.newComplaint} component={NewComplaintScreen} />
       <Stack.Screen name={Routes.detailsScreen} component={DetailsScreen} />
+      <Stack.Screen name={Routes.editDetailsScreen} component={EditScreen} />
     </Stack.Navigator>
   );
 };
