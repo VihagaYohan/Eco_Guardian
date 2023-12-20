@@ -25,12 +25,12 @@ const UIButton = (props) => {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    width: "100%",
+    width: DIMENSION.SCREEN_WIDTH - (DIMENSION.MARGIN * 2),
     borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: COLORS.blue.blue800,
+    backgroundColor: COLORS.primaryColor,
     paddingVertical: DIMENSION.RFSize(18) * DIMENSION.fontScale,
   },
   labelStyle: {
